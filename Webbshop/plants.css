@@ -1,0 +1,84 @@
+body{
+    font-family: 'Arial', sans-serif; background-color: var(--white);
+    margin: 0; padding: 0;
+}
+:root{
+    --white: #FFFDF1;
+    --green: #749D62;
+    --dark-green: #316646;
+    --red: #EB8847;
+    --dark-brown: #593C37;
+
+    --tiny-gap: 0.5em;
+    --small-gap: 2em;
+    --medium-gap: 4em;
+
+    --tiny-font: 0.8em;
+    --small-font: 1em;
+    --medium-font: 1.25em;
+    --large-font: 2em;
+    --jumbo-font: 3em;
+
+    --border-radius: 3px;
+}
+h1, h2{
+    color: var(--dark-brown); font-size: var(--jumbo-font);
+    margin: var(--tiny-gap) 0 var(--tiny-gap) var(--small-gap);
+} h2{font-size: var(--large-font);}
+button{
+    background-color: var(--green); color: var(--white);
+    border: none; padding: var(--tiny-gap) var(--small-gap);
+    font-size: var(--small-font); border-radius: var(--border-radius);
+    margin: 0 0 0 var(--medium-gap);
+    cursor: pointer; transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+} 
+button:hover{background-color: var(--dark-green);}
+
+
+nav{
+    background-color: var(--dark-green); padding: var(--small-gap);
+    display: flex; align-items: center; justify-content: space-between;
+}
+.logo-search-container{
+    display: flex; align-items: center;
+    gap: var(--small-gap);
+}
+.logo{
+    width: 50px; height: auto; 
+}
+.search-bar{
+    padding: 0.5em; border: none; 
+    color: var(--dark-green); background-color: var(--white);
+    border-radius: 5px; font-size: var(--small-font);
+}
+.nav-links-div{
+    display: flex; align-items: center; 
+}
+.nav-link{
+    color: var(--white); text-decoration: none;
+    margin: 0 1em; font-size: var(--medium-font);
+    transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+}
+.nav-link:hover{color: var(--red);}
+
+
+
+footer{
+    background-color: var(--dark-green); color: var(--white);
+    text-align: center; padding: var(--small-gap) 0; 
+    margin-top: var(--medium-gap);
+}
+footer p{
+    margin-top: var(--medium-gap); font-size: var(--tiny-font);
+}
+footer a{
+    color: var(--white); text-decoration: none; font-size: var(--small-font);
+    transition: cubic-bezier(1, 0, 0, 1) 0.3s;
+}
+footer a:hover{color: var(--red);}
+.footer-links-div{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--small-gap);
+}
+.footer-column{
+    display: flex; flex-direction: column; gap: 0.5em;
+}

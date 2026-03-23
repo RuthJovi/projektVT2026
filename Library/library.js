@@ -1,0 +1,49 @@
+class Customer {
+
+    constructor(id, name, borrowedBooks, fines){
+        this.id = id;
+        this.name = name;
+        this.borrowedBooks = borrowedBooks;
+        this.fines = fines;
+    }
+}
+
+class Loan {
+    constructor(bookId, customerId, loanDate, dueDate){
+        this.bookId = bookId;
+        this.customerId = customerId;
+        this.loanDate = loanDate;
+        this.dueDate = dueDate;
+    }
+}
+
+class Book {
+
+    constructor(id, title, author, year, isAvailable, borrowedBy, dueDate){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isAvailable = isAvailable;
+        this.borrowedBy = borrowedBy;
+        this.dueDate = dueDate;
+    }
+}
+
+let allBooks = [];
+allBooks.push(new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", 1925, true, null, null));
+allBooks.push(new Book(2, "To Kill a Mockingbird", "Harper Lee", 1960, true, null, null));
+allBooks.push(new Book(3, "1984", "George Orwell", 1949, true, null, null));
+allBooks.push(new Book(4, "Pride and Prejudice", "Jane Austen", 1813, true, null, null));
+allBooks.push(new Book(5, "The Catcher in the Rye", "J.D. Salinger", 1951, true, null, null));
+allBooks.push(new Book(6, "The Lord of the Rings", "J.R.R. Tolkien", 1954, true, null, null));
+allBooks.push(new Book(7, "The Hobbit", "J.R.R. Tolkien", 1937, true, null, null));
+allBooks.push(new Book(8, "Fahrenheit 451", "Ray Bradbury", 1953, true, null, null));
+
+let allCustomers = [];
+allCustomers.push(new Customer(1, "Alice", [], 0));
+allCustomers.push(new Customer(2, "Bob", [], 0));
+allCustomers.push(new Customer(3, "Charlie", [], 0));
+allCustomers.push(new Customer(4, "David", [], 0));
+allCustomers.push(new Customer(5, "Eve", [], 0));
+
