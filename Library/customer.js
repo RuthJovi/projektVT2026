@@ -36,11 +36,22 @@ function displayCustomers(){
 
 displayCustomers();
 
+function addCustomer(){
+    const name = prompt("Enter customer name:");
+    if (name) {
+        const newCustomer = new Customer(Date.now(), name, [], 0);
+        allCustomers.push(newCustomer);
+        localStorage.setItem("AllCustomers", JSON.stringify(allCustomers));
+        displayCustomers();
+    }
+}
+
 function editCustomer(customer) {
     const newName = prompt("Enter new name:", customer.name);
     
     if (newName) {
         customer.name = newName;
+        saveCustomers(); // update local storage
         displayCustomers(); // refresh UI
     }
 }
@@ -49,6 +60,7 @@ function deleteCustomer(customer){
     const index = allCustomers.indexOf(customer);
     if (index > -1) {
         allCustomers.splice(index, 1); // remove customer from array
+        saveCustomers(); // update local storage
         displayCustomers(); // refresh UI
     }
 }

@@ -40,10 +40,19 @@ allBooks.push(new Book(6, "The Lord of the Rings", "J.R.R. Tolkien", 1954, true,
 allBooks.push(new Book(7, "The Hobbit", "J.R.R. Tolkien", 1937, true, null, null));
 allBooks.push(new Book(8, "Fahrenheit 451", "Ray Bradbury", 1953, true, null, null));
 
-let allCustomers = [];
-allCustomers.push(new Customer(1, "Alicja", [], 0));
-allCustomers.push(new Customer(2, "Thomas", [], 0));
-allCustomers.push(new Customer(3, "Maria", [], 0));
-allCustomers.push(new Customer(4, "David", [], 0));
-allCustomers.push(new Customer(5, "José", [], 0));
+let allCustomers = JSON.parse( localStorage.getItem("AllCustomers") ); 
+if (!allCustomers) {
+    allCustomers = [
+        new Customer(1, "Alice", [], 0),
+        new Customer(2, "Thomas", [], 0),
+        new Customer(3, "Maria", [], 0),
+        new Customer(4, "David", [], 0),
+        new Customer(5, "José", [], 0)
+    ];
+    saveCustomers();
+}
+
+function saveCustomers() {
+    localStorage.setItem("AllCustomers", JSON.stringify(allCustomers));
+}
 
