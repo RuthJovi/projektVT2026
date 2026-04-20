@@ -18,6 +18,7 @@ function displayCustomers(){
         const interactButtonElement = document.createElement("button");
         interactButtonElement.classList.add("interactButton");
         interactButtonElement.textContent = "interact!";
+        interactButtonElement.addEventListener("click", () => loanFunction(customer)); // if button is clicked, show an alert
 
         const deleteButtonElement = document.createElement("button");
         deleteButtonElement.classList.add("deleteButton");
@@ -50,4 +51,8 @@ function deleteCustomer(customer){
         allCustomers.splice(index, 1); // remove customer from array
         displayCustomers(); // refresh UI
     }
+}
+
+function loanFunction(customer){
+    alert(`You have interacted with ${customer.name}!`);
 }

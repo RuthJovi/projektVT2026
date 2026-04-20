@@ -41,9 +41,9 @@ allBooks.push(new Book(7, "The Hobbit", "J.R.R. Tolkien", 1937, true, null, null
 allBooks.push(new Book(8, "Fahrenheit 451", "Ray Bradbury", 1953, true, null, null));
 
 let allCustomers = [];
-allCustomers.push(new Customer(1, "Alice", [], 0));
-allCustomers.push(new Customer(2, "Bob", [], 0));
-allCustomers.push(new Customer(3, "Charlie", [], 0));
+allCustomers.push(new Customer(1, "Alicja", [], 0));
+allCustomers.push(new Customer(2, "Thomas", [], 0));
+allCustomers.push(new Customer(3, "Maria", [], 0));
 allCustomers.push(new Customer(4, "David", [], 0));
-allCustomers.push(new Customer(5, "Eve", [], 0));
+allCustomers.push(new Customer(5, "José", [], 0));
 
