@@ -65,6 +65,37 @@ function deleteCustomer(customer){
     }
 }
 
-function loanFunction(customer){
-    alert(`You have interacted with ${customer.name}!`);
+function loanFunction(customer) {
+
+    const availableBooks = allBooks.filter(book => book.isAvailable);
+
+    if (availableBooks.length === 0) {
+        alert("No books available.");
+        return;
+    }
+
+    let message = "Choose a book number:\n";
+
+    availableBooks.forEach((book, index) => {
+        message += `${index + 1}. ${book.title}\n`;
+    });
+
+    const choice = prompt(message);
+
+    const selectedBook = availableBooks[choice - 1];
+
+    if (!selectedBook) {
+        alert("Invalid choice.");
+        return;
+    }
+
+    selectedBook.isAvailable = false;
+    selectedBook.borrowedBy = customer.id;
+
+    customer.borrowedBooks.push(selectedBook.id);
+
+    saveBooks();
+    saveCustomers();
+
+    alert(`${customer.name} borrowed ${selectedBook.title}`);
 }

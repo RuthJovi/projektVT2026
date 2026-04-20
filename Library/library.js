@@ -30,15 +30,28 @@ class Book {
     }
 }
 
-let allBooks = [];
-allBooks.push(new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", 1925, true, null, null));
-allBooks.push(new Book(2, "To Kill a Mockingbird", "Harper Lee", 1960, true, null, null));
-allBooks.push(new Book(3, "1984", "George Orwell", 1949, true, null, null));
-allBooks.push(new Book(4, "Pride and Prejudice", "Jane Austen", 1813, true, null, null));
-allBooks.push(new Book(5, "The Catcher in the Rye", "J.D. Salinger", 1951, true, null, null));
-allBooks.push(new Book(6, "The Lord of the Rings", "J.R.R. Tolkien", 1954, true, null, null));
-allBooks.push(new Book(7, "The Hobbit", "J.R.R. Tolkien", 1937, true, null, null));
-allBooks.push(new Book(8, "Fahrenheit 451", "Ray Bradbury", 1953, true, null, null));
+let allBooks = JSON.parse(localStorage.getItem("AllBooks"));
+
+if (!allBooks) {
+    allBooks = [
+        new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", 1925, true, null, null),
+        new Book(2, "To Kill a Mockingbird", "Harper Lee", 1960, true, null, null),
+        new Book(3, "1984", "George Orwell", 1949, true, null, null),
+        new Book(4, "Pride and Prejudice", "Jane Austen", 1813, true, null, null),
+        new Book(5, "The Catcher in the Rye", "J.D. Salinger", 1951, true, null, null),
+        new Book(6, "The Lord of the Rings", "J.R.R. Tolkien", 1954, true, null, null),
+        new Book(7, "The Hobbit", "J.R.R. Tolkien", 1937, true, null, null),
+        new Book(8, "Fahrenheit 451", "Ray Bradbury", 1953, true, null, null)
+    ];
+
+    saveBooks();
+}
+
+function saveBooks() {
+    localStorage.setItem("AllBooks", JSON.stringify(allBooks));
+}
+
+
 
 let allCustomers = JSON.parse( localStorage.getItem("AllCustomers") ); 
 if (!allCustomers) {
