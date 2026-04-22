@@ -15,10 +15,15 @@ function displayCustomers(){
         editButtonElement.textContent = "edit";
         editButtonElement.addEventListener("click", () => editCustomer(customer)); // if button is clicked, call the editCustomer function
 
-        const interactButtonElement = document.createElement("button");
-        interactButtonElement.classList.add("interactButton");
-        interactButtonElement.textContent = "interact!";
-        interactButtonElement.addEventListener("click", () => loanFunction(customer)); // if button is clicked, show an alert
+        const borrowButtonElement = document.createElement("button");
+        borrowButtonElement.classList.add("borrowButton");
+        borrowButtonElement.textContent = "borrow";
+        borrowButtonElement.addEventListener("click", () => loanFunction(customer)); 
+
+        const returnButtonElement = document.createElement("button");
+        returnButtonElement.classList.add("returnButton");
+        returnButtonElement.textContent = "return";
+        returnButtonElement.addEventListener("click", () => returnFunction(customer)); 
 
         const deleteButtonElement = document.createElement("button");
         deleteButtonElement.classList.add("deleteButton");
@@ -28,10 +33,12 @@ function displayCustomers(){
 
         customerElement.appendChild(nameElement); // add the name to the card
         customerElement.appendChild(editButtonElement); // add the edit button to the card
-        customerElement.appendChild(interactButtonElement); // add the interact button to the card
+        customerElement.appendChild(borrowButtonElement); // add the borrow button to the card
+        customerElement.appendChild(returnButtonElement); // add the return button to the card
         customerElement.appendChild(deleteButtonElement); // add the delete button to the card
         parent.appendChild(customerElement); //add the card to the container
     });
+    
 }
 
 displayCustomers();
@@ -56,13 +63,30 @@ function editCustomer(customer) {
     }
 }
 
-function deleteCustomer(customer){
+function deleteCustomer(customer) {
+
+    customer.borrowedBooks.forEach(bookId => {
+
+        const book = allBooks.find(book => book.id === bookId);
+
+        if (book) {
+            book.isAvailable = true;
+            book.borrowedBy = null;
+        }
+
+    });
+
+    customer.borrowedBooks = [];
+
     const index = allCustomers.indexOf(customer);
+
     if (index > -1) {
-        allCustomers.splice(index, 1); // remove customer from array
-        saveCustomers(); // update local storage
-        displayCustomers(); // refresh UI
+        allCustomers.splice(index, 1);
     }
+
+    saveBooks();
+    saveCustomers();
+    displayCustomers();
 }
 
 function loanFunction(customer) {
@@ -98,4 +122,42 @@ function loanFunction(customer) {
     saveCustomers();
 
     alert(`${customer.name} borrowed ${selectedBook.title}`);
+}
+
+function returnFunction(customer) {
+
+    if (customer.borrowedBooks.length === 0) {
+        alert(`${customer.name} has no borrowed books.`);
+        return;
+    }
+
+    const borrowedBooks = allBooks.filter(book =>
+        customer.borrowedBooks.includes(book.id)
+    );
+
+    let message = "Choose a book to return:\n";
+
+    borrowedBooks.forEach((book, index) => {
+        message += `${index + 1}. ${book.title}\n`;
+    });
+
+    const choice = prompt(message);
+
+    const selectedBook = borrowedBooks[choice - 1];
+
+    if (!selectedBook) {
+        alert("Invalid choice.");
+        return;
+    }
+
+    selectedBook.isAvailable = true;
+    selectedBook.borrowedBy = null;
+
+    const index = customer.borrowedBooks.indexOf(selectedBook.id);
+    customer.borrowedBooks.splice(index, 1);
+
+    saveBooks();
+    saveCustomers();
+
+    alert(`${customer.name} returned ${selectedBook.title}`);
 }

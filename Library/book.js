@@ -1,9 +1,11 @@
-function displayBooks(){
+function displayBooks() {
     const parent = document.getElementById("booksContainer");
 
-    allBooks.forEach(book => { // loop through all books and create a card for each book
+    parent.innerHTML = ""; // clear old cards first
 
-        const bookElement = document.createElement("div");  
+    allBooks.forEach(book => {
+
+        const bookElement = document.createElement("div");
         bookElement.classList.add("bookCard");
 
         const titleElement = document.createElement("p");
@@ -16,13 +18,19 @@ function displayBooks(){
 
         const yearElement = document.createElement("p");
         yearElement.classList.add("bookYear");
-        yearElement.textContent = book.year;
 
-        bookElement.appendChild(titleElement); // add the books title to the card
-        bookElement.appendChild(authorElement); // add the books author
-        bookElement.appendChild(yearElement); // add the books year 
-        parent.appendChild(bookElement) // add the book card to the container
-    })    
+        if (book.isAvailable) {
+            yearElement.textContent = book.year;
+        } else {
+            yearElement.textContent = "Borrowed";
+        }
+
+        bookElement.appendChild(titleElement);
+        bookElement.appendChild(authorElement);
+        bookElement.appendChild(yearElement);
+
+        parent.appendChild(bookElement);
+    });
 }
 
 displayBooks();

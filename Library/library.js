@@ -32,7 +32,7 @@ class Book {
 
 let allBooks = JSON.parse(localStorage.getItem("AllBooks"));
 
-if (!allBooks) {
+if (!allBooks || allBooks.length === 0) {
     allBooks = [
         new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", 1925, true, null, null),
         new Book(2, "To Kill a Mockingbird", "Harper Lee", 1960, true, null, null),

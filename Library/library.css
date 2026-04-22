@@ -10,7 +10,7 @@ body{
     --red: rgb(202, 70, 55);
     --green: rgb(67, 121, 61);
 
-    --gap-distance: 200px;
+    --gap-distance: 20%;
 }
 
 button{
@@ -25,16 +25,18 @@ button:hover{background-color:var(--background-color); color:var(--main-color);}
 .customerCard, .bookCard{
     background-color: var(--main-color); color:var(--background-color); display:grid; 
     grid-template-columns: var(--gap-distance) var(--gap-distance) var(--gap-distance);
-} .customerCard{grid-template-columns: var(--gap-distance) var(--gap-distance) var(--gap-distance) var(--gap-distance);}
+    width:100%;
+} 
+.customerCard{grid-template-columns: var(--gap-distance) var(--gap-distance) var(--gap-distance) var(--gap-distance) var(--gap-distance);}
 .customerName, .bookTitle{
     font-weight:bolder; margin-left: 10px;
 }
 
 .addButton{
-    width: 20%; align-self: center; margin-bottom: 10px;
+    width: 15%; align-self: center; margin-bottom: 10px;
 } .addButton:hover{background-color:var(--green);}
 
-.editButton, .interactButton, .deleteButton{
+.editButton, .borrowButton, .returnButton, .deleteButton{
     width: 40%; height:60%; max-height:30px; align-self:center;
 } .deleteButton{color: var(--red);} 
 .deleteButton:hover{background-color:var(--red); color:var(--background-color);}
