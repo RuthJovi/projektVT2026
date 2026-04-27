@@ -24,8 +24,8 @@ class Book {
         this.title = title;
         this.author = author;
         this.year = year;
-        this.isAvailable = isAvailable;
-        this.borrowedBy = borrowedBy;
+        this.isAvailable = isAvailable; // true if available, false if borrowed
+        this.borrowedBy = borrowedBy; // customer id of the borrower, null if available
         this.dueDate = dueDate;
     }
 }
@@ -48,7 +48,7 @@ if (!allBooks || allBooks.length === 0) {
 }
 
 function saveBooks() {
-    localStorage.setItem("AllBooks", JSON.stringify(allBooks));
+    localStorage.setItem("AllBooks", JSON.stringify(allBooks)); //transfer the allBooks array to a string and save it in local storage under "AllBooks"
 }
 
 

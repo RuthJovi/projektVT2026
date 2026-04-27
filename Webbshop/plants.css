@@ -75,15 +75,16 @@ nav{
 .nav-link:hover{color: var(--red);}
 
 /* Hero sections */
-#hero-section1{
+#hero-section1, #hero-section2, #hero-section3{
     height: 400px; 
     background-image: url('https://i.pinimg.com/1200x/0c/ad/12/0cad129d9c0d34eaac50302009a2360c.jpg');
     background-size: cover; background-position: center;
 }
 #hero-section2{
-    height: 400px; 
     background-image: url('https://i.pinimg.com/1200x/ea/02/56/ea0256d9e8a636d9bafb21ba4c010054.jpg');
-    background-size: cover; background-position: center;
+}
+#hero-section3{
+    background-image: url('https://i.pinimg.com/1200x/91/f5/44/91f544211bf383b6e1cdcc779bbadc58.jpg');
 }
 .hero-content{
     text-align: center;
@@ -94,12 +95,14 @@ nav{
     display: flex; flex-direction: column; align-items: center;
     padding: var(--small-gap);
 }
+.centered button{
+    margin-top: var(--small-gap);
+}
 
 /* Item card styling */
 .items-container{
     width:100%;
     display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--small-gap);
-    margin-bottom: var(--small-gap);
 }
 .item-card{
     background-color: var(--white); border-radius: var(--border-radius);
