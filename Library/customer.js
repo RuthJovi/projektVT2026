@@ -10,10 +10,15 @@ function displayCustomers(){
         nameElement.classList.add("customerName");
         nameElement.textContent = customer.name;
 
+        const viewButtonElement = document.createElement("button");
+        viewButtonElement.classList.add("viewButton");
+        viewButtonElement.textContent = "view customer";
+        viewButtonElement.addEventListener("click", () => viewCustomer(customer)); // call the viewCustomer function when its clicked
+
         const editButtonElement = document.createElement("button");
         editButtonElement.classList.add("editButton");
         editButtonElement.textContent = "edit";
-        editButtonElement.addEventListener("click", () => editCustomer(customer)); // if button is clicked, call the editCustomer function
+        editButtonElement.addEventListener("click", () => editCustomer(customer)); 
 
         const borrowButtonElement = document.createElement("button");
         borrowButtonElement.classList.add("borrowButton");
@@ -32,16 +37,33 @@ function displayCustomers(){
 
 
         customerElement.appendChild(nameElement); // add the name to the card
+        customerElement.appendChild(viewButtonElement); // add the view button to the card
         customerElement.appendChild(editButtonElement); // add the edit button to the card
         customerElement.appendChild(borrowButtonElement); // add the borrow button to the card
         customerElement.appendChild(returnButtonElement); // add the return button to the card
         customerElement.appendChild(deleteButtonElement); // add the delete button to the card
         parent.appendChild(customerElement); //add the card to the container
     });
-    
 }
 
 displayCustomers();
+
+function viewCustomer(customer){
+    let message = `Name: ${customer.name}\nBorrowed Books:\n`; // create a message string to show in the alert
+
+    if (customer.borrowedBooks.length === 0) { // if the customer has no borrowed books, show "none"
+        message += "None";
+    } else {
+        customer.borrowedBooks.forEach(bookId => { // for each book in the customers borrowedBooks array
+            const book = allBooks.find(book => book.id === bookId); // find the book in allBooks using the id
+            if (book) {
+                message += `- ${book.title} by ${book.author} (${book.year})\n`;
+            }
+        });
+    }
+
+    alert(message);
+}
 
 function addCustomer(){
     const name = prompt("Enter customer name:"); 
@@ -65,6 +87,11 @@ function editCustomer(customer) {
 
 function deleteCustomer(customer) {
 
+    if (!confirm(`Are you sure you want to delete ${customer.name}?`)){ // ask for confirmation before deleting
+        return;
+    }
+
+    // automatically return all borrowed books when a customer is deleted
     customer.borrowedBooks.forEach(function(bookId) { // for each book in the customers borrowedBooks array
         const book = allBooks.find(function(book) { 
         return book.id === bookId; // find the book in allBooks
@@ -117,7 +144,6 @@ function loanFunction(customer) {
 
     saveBooks();
     saveCustomers();
-
     alert(`${customer.name} borrowed ${selectedBook.title}`);
 }
 
@@ -154,6 +180,5 @@ function returnFunction(customer) {
 
     saveBooks();
     saveCustomers();
-
     alert(`${customer.name} returned ${selectedBook.title}`);
 }
