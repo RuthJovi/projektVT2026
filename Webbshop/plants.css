@@ -48,7 +48,7 @@ button:hover{background-color: var(--dark-green);}
 
 /* Navbar styling, items from left to right, containers before elements */
 nav{
-    /*background-color: var(--dark-green); */
+    /*background-color: var(--dark-green);*/
     background-image: linear-gradient(to bottom, var(--dark-green), var(--gradient-test));
     display: flex; align-items: center; justify-content: space-between;
 }
@@ -76,9 +76,11 @@ nav{
 
 /* Hero sections */
 #hero-section1, #hero-section2, #hero-section3{
-    height: 400px; 
+    height: 48vw;
+    max-height: 400px;
     background-image: url('https://i.pinimg.com/1200x/0c/ad/12/0cad129d9c0d34eaac50302009a2360c.jpg');
-    background-size: cover; background-position: center;
+    background-position: center;
+    background-size: 100% auto;
 }
 #hero-section2{
     background-image: url('https://i.pinimg.com/1200x/ea/02/56/ea0256d9e8a636d9bafb21ba4c010054.jpg');
@@ -126,10 +128,13 @@ nav{
 }
 
 /* Product page stuff */
-.filter-box{
+.filter-box, .title-box{
     display: flex; 
     gap: var(--tiny-gap); 
     margin: var(--tiny-gap) 0 var(--small-gap) 0;
+}
+.title-box{
+    flex-direction: column; align-items: center;
 }
 #filter1, #filter2{
     padding: var(--tiny-gap); border: none; 
@@ -163,10 +168,8 @@ footer p{
     color: black;
 }
 
-/* ===================== */
-/* RESPONSIVE DESIGN */
-/* ===================== */
 
+/* RESPONSIVE DESIGN */
 /* Tablets */
 @media (max-width: 1024px) {
     .items-container {
@@ -182,7 +185,7 @@ footer p{
     }
 }
 
-/* Mobiler */
+/* Phones */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -216,7 +219,7 @@ footer p{
     }
 }
 
-/* Små mobiler */
+/* Small phones */
 @media (max-width: 480px) {
     .items-container {
         grid-template-columns: 1fr;
